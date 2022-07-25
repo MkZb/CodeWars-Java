@@ -3,7 +3,9 @@ package easykatas;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Main {
 
@@ -83,7 +85,22 @@ public class Main {
         return res;
     }
 
-    public static void main(String[] args) {
+    public static String even_or_odd(int number) {
+        return number % 2 == 0 ? "Even" : "Odd";
+    }
 
+    public static String stringy(int size) {
+        return Stream.iterate(1, i -> i == 1 ? 0 : 1)
+                .limit(size)
+                .map(String::valueOf)
+                .collect(Collectors.joining(""));
+    }
+
+    public static int quarterOf(int month) {
+        return (month - 1) / 3 + 1;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(quarterOf(10));
     }
 }
