@@ -1,8 +1,7 @@
 package easykatas;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -100,7 +99,54 @@ public class Main {
         return (month - 1) / 3 + 1;
     }
 
+    public static boolean isLove(final int flower1, final int flower2) {
+        return ((flower1 + flower2) & 0b1) == 1;
+    }
+
+    public String dnaToRna(String dna) {
+        return dna.replace("T", "U");
+    }
+
+    public static int summation(int n) {
+        return IntStream.rangeClosed(1, n).sum();
+    }
+
+    public static int Past(int h, int m, int s) {
+        return (h * 3600 + m * 60 + s) * 1000;
+    }
+
+    public static boolean isTriangle(int a, int b, int c) {
+        return a + b > c && a + c > b && b + c > a;
+    }
+
+    public static String rps(String p1, String p2) {
+        if (p1.equals(p2)) return "Draw";
+        if ((p1.equals("paper") && p2.equals("rock")) ||
+                (p1.equals("rock") && p2.equals("scissors")) ||
+                (p1.equals("scissors") && p2.equals("paper"))) {
+            return "Player 1 won";
+        } else {
+            return "Player 2 won";
+        }
+    }
+
+    public static String calculate(double distance, String time) {
+        Integer[] timeInInt = Arrays.stream(time.split(":"))
+                .map(el -> el.replace("^(00)", "0"))
+                .map(Integer::valueOf)
+                .toArray(Integer[]::new);
+        int paceInSeconds = (int) ((timeInInt[0] * 60 + timeInInt[1]) / distance);
+        return String.format("%d:%02d", paceInSeconds / 60, paceInSeconds % 60);
+    }
+
+    public static String abbrevName(String name) {
+        return Arrays.stream(name.split(" "))
+                .map(el -> String.valueOf(el.charAt(0)))
+                .map(String::toUpperCase)
+                .collect(Collectors.joining("."));
+    }
+
     public static void main(String[] args) {
-        System.out.println(quarterOf(10));
+        System.out.println(abbrevName("St Hsd"));
     }
 }
