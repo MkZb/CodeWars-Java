@@ -41,6 +41,5 @@ class Cheat extends Random {
         if (possibleSeeds.size() == 1) {
             setSeed(possibleSeeds.get(0) ^ multiplier);
         }
-        
     }
 }
