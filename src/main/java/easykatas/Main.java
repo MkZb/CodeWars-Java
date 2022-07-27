@@ -174,6 +174,14 @@ public class Main {
                 .orElse("").split(""));
     }
 
+    public static boolean comp(int[] a, int[] b) {
+        if (a == null || b == null) return false;
+        int[] aSquared = Arrays.stream(a).map(el -> el*el).sorted().toArray();
+        Arrays.sort(b);
+        return Arrays.equals(aSquared, b);
+    }
+
+
     public static void main(String[] args) {
 
     }
