@@ -176,11 +176,14 @@ public class Main {
 
     public static boolean comp(int[] a, int[] b) {
         if (a == null || b == null) return false;
-        int[] aSquared = Arrays.stream(a).map(el -> el*el).sorted().toArray();
+        int[] aSquared = Arrays.stream(a).map(el -> el * el).sorted().toArray();
         Arrays.sort(b);
         return Arrays.equals(aSquared, b);
     }
 
+    public static boolean zeroFuel(double distanceToPump, double mpg, double fuelLeft) {
+        return fuelLeft * mpg >= distanceToPump;
+    }
 
     public static void main(String[] args) {
 
