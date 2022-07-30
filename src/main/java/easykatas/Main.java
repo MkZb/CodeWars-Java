@@ -185,6 +185,18 @@ public class Main {
         return fuelLeft * mpg >= distanceToPump;
     }
 
+    static String findChildren(final String text) {
+        return text.chars()
+                .boxed()
+                .sorted(((o1, o2) -> {
+                    if ((o1 > 96 && o2 > 96) || (o1 < 96 && o2 < 96) || Math.max(o1, o2) - 32 == Math.min(o1, o2)) return o1 - o2;
+                    if (o1 > o2) return (o1 - 32) - o2;
+                    else return o1 - (o2 - 32);
+                }))
+                .map(String::valueOf)
+                .collect(Collectors.joining());
+    }
+
     public static void main(String[] args) {
 
     }
