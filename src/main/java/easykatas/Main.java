@@ -187,7 +187,7 @@ public class Main {
 
     static String findChildren(final String text) {
         return text.chars()
-                .boxed()
+                .mapToObj(el -> (char) el)
                 .sorted(((o1, o2) -> {
                     if ((o1 > 96 && o2 > 96) || (o1 < 96 && o2 < 96) || Math.max(o1, o2) - 32 == Math.min(o1, o2)) return o1 - o2;
                     if (o1 > o2) return (o1 - 32) - o2;
