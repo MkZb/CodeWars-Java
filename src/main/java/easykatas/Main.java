@@ -198,7 +198,32 @@ public class Main {
                 .collect(Collectors.joining());
     }
 
-    public static void main(String[] args) {
+    public static boolean isAValidMessage(String message) {
+        //regex (\\d+)(\\D*) superior
+        if (message.equals("") || message.equals("0")) return true;
+        int left = 0;
+        int right = 0;
 
+        while (right < message.length()) {
+            while (String.valueOf(message.charAt(right)).matches("\\d")) {
+                right++;
+                if (right == message.length()) return false;
+            }
+            if (left == right) return false;
+
+            int size = Integer.parseInt(message.substring(left, right));
+            left = right;
+            if (left + size > message.length()) return false;
+            for (int i = 0; i < size; i++) {
+                if (!String.valueOf(message.charAt(left)).matches("[A-Za-z]")) return false;
+                left++;
+            }
+            right = left;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isAValidMessage("0"));
     }
 }
