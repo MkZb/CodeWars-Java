@@ -228,7 +228,21 @@ public class Main {
         return arr[0] == arr[1] ? arr[arr.length - 1] : arr[0];
     }
 
+    public static String high(String s) {
+        String[] container = Arrays.stream(s.split(" ")).reduce(new String[]{"", "0"},
+                (acc, el) -> {
+                    int score = 0;
+                    for (char ch : el.toCharArray()) {
+                        score += ch - 96;
+                    }
+                    if (Integer.parseInt(acc[1]) < score) return new String[]{el, String.valueOf(score)};
+                    else return acc;
+                },
+                (o1, o2) -> o1 = Integer.parseInt(o1[1]) > Integer.parseInt(o2[1]) ? o1 : o2);
+        return container[0];
+    }
+
     public static void main(String[] args) {
-        System.out.println(isAValidMessage("0"));
+        System.out.println(high("man i need a taxi up to ubud"));
     }
 }
